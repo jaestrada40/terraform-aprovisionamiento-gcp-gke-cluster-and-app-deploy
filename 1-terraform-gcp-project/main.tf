@@ -11,7 +11,7 @@ resource "google_project" "my_project" {
 }
 
 resource "google_project_service" "enable-api" {
-  for_each = var.google_api_services
+   for_each = toset(var.google_api_services)
   project                    = google_project.my_project.id
   service                    = each.value
   disable_dependent_services = true
